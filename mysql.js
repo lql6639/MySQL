@@ -2,7 +2,7 @@
 const mysql = require('mysql2')
 
 // 创建数据库连接
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: '127.0.0.1',      // 数据库的 IP 地址
   user: 'root',           // 登陆数据库的账号
   password: 'admin123',   // 登陆数据库的密码
