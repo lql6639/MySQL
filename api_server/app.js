@@ -24,8 +24,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(function (req, res, next) {
   // 获取请求到达服务器的时间
   req.startTime = Date.now()
-  // status = 0 为成功； status = 1 为失败； 默认将 status 的值设置为 1，方便处理失败的情况
-  res.cc = function (err, status = 1, data, token) {
+  // 默认将 status 的值设置为 400，方便处理失败的情况
+  res.cc = function (err, status = 400, data, token) {
     res.send({
       // 状态
       status,
@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
       // 头信息
       headers: req.headers,
       // Token
-      Token: token,
+      token,
       // 时间戳
       Time: req.startTime,
       // 时间
@@ -59,13 +59,17 @@ const config = require('./config.js')
 // 排除哪些接口不需要进行 Token 的身份认证
 app.use(jwt({ secret: config.jwtSecretKey, algorithms: ["HS256"], }).unless({ path: [/^\/api\//] }))
 
-// 导入并使用用户路由模块
+// 导入并注册用户路由模块
 const userRouter = require('./router/user')
 app.use('/api', userRouter)
-// 导入并使用用户信息路由模块
+// 导入并注册用户信息路由模块
 const userinfoRouter = require('./router/userinfo')
 // 注意：以 /my 开头的接口，都是有权限的接口，需要进行 Token 身份认证
 app.use('/my', userinfoRouter)
+// 导入并注册文章分类路由模块
+const artCateRouter = require('./router/artcate')
+// 注意：以 /my/article 开头的接口，都是有权限的接口，需要进行 Token 身份认证
+app.use('/my/article', artCateRouter)
 
 // 全局错误级别中间件，捕获验证失败的错误，并把验证失败的结果响应给客户端
 app.use(function (err, req, res, next) {

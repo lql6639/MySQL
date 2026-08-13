@@ -38,7 +38,7 @@ exports.updateUserInfo = (req, res) => {
     if (results.affectedRows !== 1) return res.cc('修改用户基本信息失败！')
 
     // 修改用户信息成功
-    return res.cc('修改用户基本信息成功！', 0, results, null)
+    return res.cc('修改用户基本信息成功！', 200, results, null)
   })
 }
 
@@ -75,7 +75,7 @@ exports.updatePassword = (req, res) => {
       if (results.affectedRows !== 1) return res.cc('修改密码失败！')
 
       // 修改密码成功
-      res.cc('修改密码成功！', 0, results, null)
+      res.cc('修改密码成功！', 200, results, null)
     })
   })
 }
@@ -94,6 +94,6 @@ exports.updateAvatar = (req, res) => {
     if (results.affectedRows !== 1) return res.cc('更新头像失败！')
 
     // 更新用户头像成功
-    return res.cc('更新头像成功！', 0, results, null)
+    return res.cc('更新头像成功！', 200, results, null)
   })
 }

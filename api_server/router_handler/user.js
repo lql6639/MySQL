@@ -47,8 +47,9 @@ exports.regUser = (req, res) => {
       if (err) return res.cc(err)
       // SQL 语句执行成功，但影响行数不为 1
       if (results.affectedRows !== 1) return res.cc('注册用户失败，请稍后再试！')
+
       // 注册成功
-      res.cc('注册成功！', 0, results, null)
+      res.cc('注册成功！', 200, results, null)
     })
   })
 }
@@ -90,6 +91,6 @@ exports.login = (req, res) => {
     const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })
 
     // 登陆成功
-    res.cc('登陆成功！', 0, results[0], 'Bearer ' + tokenStr)
+    res.cc('登陆成功！', 200, results[0], 'Bearer ' + tokenStr)
   })
 }
