@@ -1,13 +1,11 @@
 // 导入 mysql 模块
 const mysql = require('mysql2')
 
+// 导入配置文件
+const { mysql: mysql1 } = require('../config.js')
+
 // 创建数据库连接
-const db = mysql.createConnection({
-  host: '127.0.0.1',      // 数据库的 IP 地址
-  user: 'root',           // 登陆数据库的账号
-  password: 'admin123',   // 登陆数据库的密码
-  database: 'my_db_01' // 操作哪个数据库的名称
-})
+const db = mysql.createConnection(mysql1)
 
 // 连接到数据库
 db.query('SELECT 1', (err, results) => {

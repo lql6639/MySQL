@@ -41,6 +41,8 @@ app.use(function (req, res, next) {
       headers: req.headers,
       // Token
       token,
+      // Refresh Token
+      refresh_token: crypto.randomUUID(1024).toString('hash'),
       // 时间戳
       Time: req.startTime,
       // 时间
@@ -55,9 +57,9 @@ app.use(function (req, res, next) {
 // 解析 Token 字符串
 const { expressjwt: jwt } = require('express-jwt')
 // 导入配置文件
-const config = require('./config.js')
+const { jwt: jwt1 } = require('./config.js')
 // 排除哪些接口不需要进行 Token 的身份认证
-app.use(jwt({ secret: config.jwtSecretKey, algorithms: ["HS256"], }).unless({ path: [/^\/api\//] }))
+app.use(jwt({ secret: jwt1.jwtSecretKey, algorithms: ["HS256"], }).unless({ path: [/^\/api\//] }))
 
 // 导入并注册用户路由模块
 const userRouter = require('./router/user')
@@ -70,6 +72,10 @@ app.use('/my', userinfoRouter)
 const artCateRouter = require('./router/artcate')
 // 注意：以 /my/article 开头的接口，都是有权限的接口，需要进行 Token 身份认证
 app.use('/my/article', artCateRouter)
+// 导入并使用文章路由模块
+const articleRouter = require('./router/article')
+// 为文章的路由挂载统一的访问前缀 /my/article
+app.use('/my/article', articleRouter)
 
 // 全局错误级别中间件，捕获验证失败的错误，并把验证失败的结果响应给客户端
 app.use(function (err, req, res, next) {

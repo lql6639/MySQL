@@ -25,6 +25,7 @@
   "homepage": "https://github.com/lql6639/MySQL/api_server#readme",
   "dependencies": {
     "@escook/express-joi": "^1.1.1",
+    "aes-js": "^3.1.2",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.3.0",
     "cors": "^2.8.6",

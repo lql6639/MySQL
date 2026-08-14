@@ -11,7 +11,7 @@ const bcrypt = require('bcryptjs')
 // 生成 Token 字符串
 const jwt = require('jsonwebtoken')
 // 导入配置文件
-const config = require('../config.js')
+const { jwt: jwt1 } = require('../config.js')
 
 // 注册用户的处理函数
 exports.regUser = (req, res) => {
@@ -88,7 +88,7 @@ exports.login = (req, res) => {
     const user = { ...results[0], password: '' }
 
     // 生成 Token 字符串
-    const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })
+    const tokenStr = jwt.sign(user, jwt1.jwtSecretKey, { expiresIn: jwt1.expiresIn })
 
     // 登陆成功
     res.cc('登陆成功！', 200, results[0], 'Bearer ' + tokenStr)
