@@ -368,7 +368,7 @@ app.post('/api/login', (req, res) => {
   }
   // 登录成功，生成 JWT 字符串
   const tokenStr = jwt.sign({ username }, secretKey, { expiresIn: '72h' })
-  res.send({ status: 0, message: '登录成功', token: tokenStr })
+  res.send({ status: 0, message: '登录成功', token: 'Bearer ' + tokenStr })
 })
 ```
 
@@ -401,4 +401,30 @@ app.use((err, req, res, next) => {
   }
   res.send({ status: 1, message: '未知的错误' })
 })
+```
+
+## 7、使用 jsonwebtoken 生成和校验 token
+
+```js
+// 导入 jsonwebtoken
+const jwt = require('jsonwebtoken')
+
+// 数据
+const data = { name: 'zhangshan', age: 18, gender: '男' }
+
+// 定义 secret 密钥
+const secret = 'hello kitty ^_^'
+
+// 生成 token
+const token = jwt.sign(data, secret, { expiresIn: '72h' })
+
+// 校验 token
+jwt.verify(token, secret, (err, decoded) => {
+  if (err) {
+    console.log('token 校验失败', err)
+  } else {
+    console.log('token 校验成功', decoded)
+  }
+})
+
 ```

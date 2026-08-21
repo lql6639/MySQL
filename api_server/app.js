@@ -37,12 +37,8 @@ app.use(function (req, res, next) {
       url: req.originalUrl,
       // 数据
       data,
-      // 头信息
-      headers: req.headers,
       // Token
       token,
-      // Refresh Token
-      refresh_token: crypto.randomUUID(1024).toString('hash'),
       // 时间戳
       Time: req.startTime,
       // 时间
@@ -76,6 +72,9 @@ app.use('/my/article', artCateRouter)
 const articleRouter = require('./router/article')
 // 为文章的路由挂载统一的访问前缀 /my/article
 app.use('/my/article', articleRouter)
+
+// 托管静态资源文件
+app.use('/uploads', express.static('./uploads'))
 
 // 全局错误级别中间件，捕获验证失败的错误，并把验证失败的结果响应给客户端
 app.use(function (err, req, res, next) {

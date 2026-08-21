@@ -17,11 +17,11 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // 定义 secret 密钥
-const secretKey = 'hello kitty ^_^'
+const secret = 'hello kitty ^_^'
 
 // 注册将 JWT 字符串解析还原成 JSON 对象的中间件
 // unless 指定哪些接口不需要访问权限
-app.use(expressJWT({ secret: secretKey, algorithms: ['HS256'] }).unless({ path: [/^\/api\//] }))
+app.use(expressJWT({ secret: secret, algorithms: ['HS256'] }).unless({ path: [/^\/api\//] }))
 
 // 托管静态资源文件
 app.use(express.static('./public'))
@@ -36,8 +36,8 @@ app.post('/api/login', (req, res) => {
     return res.send({ status: 1, message: '登录失败' })
   }
   // 登录成功，生成 JWT 字符串
-  const tokenStr = jwt.sign({ username }, secretKey, { expiresIn: '72h' })
-  res.send({ status: 0, message: '登录成功', token: tokenStr })
+  const tokenStr = jwt.sign({ username }, secret, { expiresIn: '72h' })
+  res.send({ status: 0, message: '登录成功', token: 'Bearer ' + tokenStr })
 })
 
 // 这是一个有权限的 API 接口

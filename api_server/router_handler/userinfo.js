@@ -21,7 +21,7 @@ exports.getUserInfo = (req, res) => {
     if (results.length !== 1) return res.cc('获取用户信息失败！')
 
     // 将用户信息响应给客户端
-    res.cc('获取用户基本信息成功！', 0, results[0], null)
+    res.cc('获取用户基本信息成功！', 200, results[0], null)
   })
 }
 
