@@ -35,6 +35,6 @@ exports.addArticle = (req, res, next) => {
     if (results.affectedRows !== 1) return res.cc('发布文章失败！')
 
     // 发布文章成功
-    res.cc('发布文章成功', 200, results, null)
+    res.cc('发布文章成功', 200, results)
   })
 }

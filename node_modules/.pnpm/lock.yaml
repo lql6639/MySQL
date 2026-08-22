@@ -11,9 +11,6 @@ importers:
       '@escook/express-joi':
         specifier: ^1.1.1
         version: 1.1.1
-      aes-js:
-        specifier: ^3.1.2
-        version: 3.1.2
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -50,15 +47,8 @@ importers:
       mysql2:
         specifier: ^3.23.2
         version: 3.23.2(@types/node@26.2.0)
-      pkcs7:
-        specifier: ^1.0.4
-        version: 1.0.4
 
 packages:
-
-  '@babel/runtime@7.29.7':
-    resolution: {integrity: sha512-Nq8OhGWiZIZGV6hLHoyAKLLcJihP/xFeBMGJoUrxTX2psI8dCifzLhZISFb+VWS3wFMRDmCGw5R+dOySCqPLhw==}
-    engines: {node: '>=6.9.0'}
 
   '@escook/express-joi@1.1.1':
     resolution: {integrity: sha512-sAzrugjkjOfAUG5cKMLl8lvgkbvfJzFWIdDBA9uqeI8VF7Dx39k3NhgK2QOkFJVLORZDbKaZpqWekSp2qNqNQg==}
@@ -90,9 +80,6 @@ packages:
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
-
-  aes-js@3.1.2:
-    resolution: {integrity: sha512-e5pEa2kBnBOgR4Y/p20pskXI74UEz7de8ZGVo58asOtvSVG5YAbJeELPZxOmt+Bnz3rX753YKhfIn4X4l1PPRQ==}
 
   append-field@1.0.0:
     resolution: {integrity: sha512-klpgFSWLW1ZEs8svjfb7g4qWY0YS5imI82dTg+QahUvJ8YqAY0P10Uk8tTyh9ZGuYEZEMaeJYCF5BFuX552hsw==}
@@ -457,10 +444,6 @@ packages:
   path-to-regexp@8.4.2:
     resolution: {integrity: sha512-qRcuIdP69NPm4qbACK+aDogI5CBDMi1jKe0ry5rSQJz8JVLsC7jV8XpiJjGRLLol3N+R5ihGYcrPLTno6pAdBA==}
 
-  pkcs7@1.0.4:
-    resolution: {integrity: sha512-afRERtHn54AlwaF2/+LFszyAANTCggGilmcmILUzEjvs3XgFZT+xE6+QWQcAGmu4xajy+Xtj7acLOPdx5/eXWQ==}
-    hasBin: true
-
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -600,8 +583,6 @@ packages:
 
 snapshots:
 
-  '@babel/runtime@7.29.7': {}
-
   '@escook/express-joi@1.1.1':
     dependencies:
       joi: 17.4.0
@@ -635,8 +616,6 @@ snapshots:
     dependencies:
       mime-types: 3.0.2
       negotiator: 1.0.0
-
-  aes-js@3.1.2: {}
 
   append-field@1.0.0: {}
 
@@ -1020,10 +999,6 @@ snapshots:
   parseurl@1.3.3: {}
 
   path-to-regexp@8.4.2: {}
-
-  pkcs7@1.0.4:
-    dependencies:
-      '@babel/runtime': 7.29.7
 
   process-nextick-args@2.0.1: {}
 

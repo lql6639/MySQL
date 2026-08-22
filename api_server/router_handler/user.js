@@ -8,7 +8,7 @@ const db = require('../db')
 // 加密
 const bcrypt = require('bcryptjs')
 
-// 生成 Token 字符串
+// 生成 token 字符串
 const jwt = require('jsonwebtoken')
 // 导入配置文件
 const { jwt: jwt1 } = require('../config.js')
@@ -49,7 +49,7 @@ exports.regUser = (req, res) => {
       if (results.affectedRows !== 1) return res.cc('注册用户失败，请稍后再试！')
 
       // 注册成功
-      res.cc('注册成功！', 200, results, null)
+      res.cc('注册成功！', 200, results)
     })
   })
 }
@@ -82,15 +82,18 @@ exports.login = (req, res) => {
     // 如果对比的结果等于 false, 则证明用户输入的密码错误
     if (!compareResult) return res.cc('密码错误！')
 
-    // TODO：登录成功，生成 Token 字符串
+    // TODO：登录成功，生成 token 字符串
 
-    // 生成 Token 字符串时，一定要剔除 密码
+    // 生成 token 字符串时，一定要剔除 密码
     const user = { ...results[0], password: '' }
 
-    // 生成 Token 字符串
-    const tokenStr = jwt.sign(user, jwt1.jwtSecretKey, { expiresIn: jwt1.expiresIn })
+    // 生成 token 字符串
+    const token = jwt.sign(user, jwt1.jwtSecretKey, { expiresIn: jwt1.expiresIn })
+
+    // 设置 token 到响应头
+    res.setHeader('Authorization', 'Bearer ' + token)
 
     // 登陆成功
-    res.cc('登陆成功！', 200, results[0], 'Bearer ' + tokenStr)
+    res.cc('登陆成功！', 200, results[0], token)
   })
 }

@@ -22,10 +22,10 @@ app.use(express.urlencoded({ extended: true }))
 
 // 全局向客户端响应处理失败的结果函数 res.cc()
 app.use(function (req, res, next) {
-  // 获取请求到达服务器的时间
-  req.startTime = Date.now()
+  // 拦截"完全没填"的任何请求
+  if (req.body === undefined) req.body = {}
   // 默认将 status 的值设置为 400，方便处理失败的情况
-  res.cc = function (err, status = 400, data, token) {
+  res.cc = function (err, status = 400, data, token = null) {
     res.send({
       // 状态
       status,
@@ -36,17 +36,17 @@ app.use(function (req, res, next) {
       // 请求地址
       url: req.originalUrl,
       // 数据
-      data,
+      data: data || null,
       // Token
       token,
       // 时间戳
-      Time: req.startTime,
+      Time: Date.now(),
       // 时间
       Date: new Date().toString()
     })
   }
-  // 拦截"完全没填"的任何请求
-  if (req.body === undefined) req.body = {}
+  // 防盗链
+  if (req.hostname !== '127.0.0.1') return res.cc('非法请求！')
   next()
 })
 

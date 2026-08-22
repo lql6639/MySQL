@@ -13,7 +13,7 @@ exports.getArticleCates = (req, res) => {
     if (err) return res.cc(err)
 
     // 执行 SQL 语句成功
-    res.cc('获取文章分类列表成功！', 200, results, null)
+    res.cc('获取文章分类列表成功！', 200, results)
   })
 }
 
@@ -48,7 +48,7 @@ exports.addArticleCates = (req, res) => {
       if (results.affectedRows !== 1) return res.cc('新增文章分类失败！')
 
       // 新增文章分类成功
-      res.cc('新增文章分类成功！', 200, results, null)
+      res.cc('新增文章分类成功！', 200, results)
     })
   })
 }
@@ -66,7 +66,7 @@ exports.deleteCateById = (req, res) => {
     if (results.affectedRows !== 1) return res.cc('删除文章分类失败！')
 
     // 删除文章分类成功
-    res.cc('删除文章分类成功！', 200, results, null)
+    res.cc('删除文章分类成功！', 200, results)
   })
 }
 
@@ -83,7 +83,7 @@ exports.getArticleById = (req, res) => {
     if (results.length !== 1) return res.cc('获取文章分类数据失败！')
 
     // 把数据响应给客户端
-    res.cc('获取文章分类数据成功！', 200, results[0], null)
+    res.cc('获取文章分类数据成功！', 200, results[0])
   })
 }
 
@@ -119,7 +119,7 @@ exports.updateCateById = (req, res) => {
       if (results.affectedRows !== 1) return res.cc('更新文章分类失败！')
 
       // 更新文章分类成功
-      res.cc('更新文章分类成功！', 200, results, null)
+      res.cc('更新文章分类成功！', 200, results)
     })
   })
 }
