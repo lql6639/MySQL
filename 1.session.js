@@ -22,7 +22,7 @@ const sessionStore = new MySQLStore(options)
 // 配置 session 中间件
 app.use(session({
   name: 'sid',             // 设置 cookie 中保存 sid 的字段名称
-  secret: 'hello kitty',   // 对 session id 相关的 cookie 进行签名
+  secret: 'hello kitty ^_^',   // 对 session id 相关的 cookie 进行签名
   resave: false,           // 是否每次请求都重新保存 session
   saveUninitialized: true, // 是否在存储内容之前创建一个 session
   store: sessionStore,     // 设置存储 Session 的位置
